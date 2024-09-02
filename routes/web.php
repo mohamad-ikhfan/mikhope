@@ -16,7 +16,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('router')->group(function () {
         Route::get('/', [RouterMikrotikController::class, 'index'])->name('router.index');
-        Route::post('/create', [RouterMikrotikController::class, 'store'])->name('router.store');
+        Route::post('store', [RouterMikrotikController::class, 'store'])->name('router.store');
+        Route::put('update/{id}', [RouterMikrotikController::class, 'update'])->name('router.update');
+        Route::delete('/{id}', [RouterMikrotikController::class, 'destroy'])->name('router.destroy');
     });
 });
 

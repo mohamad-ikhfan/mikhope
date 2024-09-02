@@ -34,8 +34,7 @@ class StoreRouterMikrotikRequest extends FormRequest
 
     public function save($data)
     {
-        $routerMikrotik = (new RouterMikrotik())->fill($data);
-        $routerMikrotik->save();
+        $routerMikrotik = (new RouterMikrotik())->create($data);
         $routerMikrotik->users()->attach(auth('web')->user()->id);
     }
 }

@@ -34,16 +34,18 @@ class RouterMikrotikController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRouterMikrotikRequest $request, RouterMikrotik $routerMikrotik)
+    public function update(UpdateRouterMikrotikRequest $request, $id)
     {
+        $routerMikrotik = RouterMikrotik::findOrFail($id);
         $routerMikrotik->update($request->validationData());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RouterMikrotik $routerMikrotik)
+    public function destroy($id)
     {
+        $routerMikrotik = RouterMikrotik::findOrFail($id);
         $routerMikrotik->delete();
     }
 }
