@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\RouterMikrotik;
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRouterMikrotikRequest extends FormRequest
@@ -30,11 +28,5 @@ class StoreRouterMikrotikRequest extends FormRequest
             'user' => 'required|string',
             'pass' => 'required|string',
         ];
-    }
-
-    public function save($data)
-    {
-        $routerMikrotik = (new RouterMikrotik())->create($data);
-        $routerMikrotik->users()->attach(auth('web')->user()->id);
     }
 }

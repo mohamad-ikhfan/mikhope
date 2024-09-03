@@ -28,7 +28,8 @@ class RouterMikrotikController extends Controller
      */
     public function store(StoreRouterMikrotikRequest $request)
     {
-        $request->save($request->validationData());
+        $routerMikrotik = RouterMikrotik::create($request->validationData());
+        $routerMikrotik->users()->attach(auth('web')->user()->id);
     }
 
     /**
