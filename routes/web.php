@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PacketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouterMikrotikController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,13 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [ClientController::class, 'store'])->name('client.store');
         Route::put('update/{id}', [ClientController::class, 'update'])->name('client.update');
         Route::delete('/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+    });
+
+    Route::prefix('packet')->group(function () {
+        Route::get('/', [PacketController::class, 'index'])->name('packet.index');
+        Route::post('store', [PacketController::class, 'store'])->name('packet.store');
+        Route::put('update/{id}', [PacketController::class, 'update'])->name('packet.update');
+        Route::delete('/{id}', [PacketController::class, 'destroy'])->name('packet.destroy');
     });
 });
 
