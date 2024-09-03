@@ -1,11 +1,11 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import CreateRouterMikrotik from "./Create";
 import { useState } from "react";
-import RouterMikrotikTable from "./Table";
+import CreateClient from "./Create";
+import ClientTable from "./Table";
 
-export default function RouterMikrotikIndex({ auth, routerMikrotiks }) {
+export default function ClientIndex({ auth, clients }) {
     const [showModalCreate, setShowModalCreate] = useState(false);
 
     const closeModal = () => {
@@ -17,11 +17,11 @@ export default function RouterMikrotikIndex({ auth, routerMikrotiks }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Router
+                    Client
                 </h2>
             }
         >
-            <Head title="Router" />
+            <Head title="Client" />
 
             <div className="py-12">
                 <div className="max-w-full mx-auto md:px-6">
@@ -30,19 +30,17 @@ export default function RouterMikrotikIndex({ auth, routerMikrotiks }) {
                             type="button"
                             onClick={() => setShowModalCreate(true)}
                         >
-                            New Router
+                            New Client
                         </PrimaryButton>
                     </div>
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm md:rounded-lg">
-                        <RouterMikrotikTable
-                            routerMikrotiks={routerMikrotiks}
-                        />
+                        <ClientTable clients={clients} />
                     </div>
                 </div>
             </div>
 
             {showModalCreate && (
-                <CreateRouterMikrotik
+                <CreateClient
                     showModal={showModalCreate}
                     closeModal={closeModal}
                 />

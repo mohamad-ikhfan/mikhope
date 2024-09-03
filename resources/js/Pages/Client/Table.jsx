@@ -1,20 +1,26 @@
 import SearchInput from "@/Components/SearchInput";
 import { EyeIcon, PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
-import ShowRouterMikrotik from "./Show";
 import { useState } from "react";
-import EditRouterMikrotik from "./Edit";
-import DeleteRouterMikrotik from "./Delete";
 import Pagination from "@/Components/Pagination";
+import EditClient from "./Edit";
+import DeleteClient from "./Delete";
+import ShowClient from "./Show";
 
-export default function RouterMikrotikTable({ routerMikrotiks }) {
-    const columns = ["name", "host", "port", "user", "pass"];
-    const rows = routerMikrotiks.data;
-    const links = routerMikrotiks.meta.links;
+export default function ClientTable({ clients }) {
+    const columns = [
+        "identity_number",
+        "full_name",
+        "phone",
+        "email",
+        "address",
+    ];
+    const rows = clients.data;
+    const links = clients.meta.links;
 
     const [showModalShow, setShowModalShow] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
-    const [dataROw, setDataRow] = useState();
+    const [dataRow, setDataRow] = useState();
 
     const closeModal = () => {
         setShowModalShow(false);
@@ -101,23 +107,23 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
             </div>
 
             {showModalShow && (
-                <ShowRouterMikrotik
+                <ShowClient
                     showModal={showModalShow}
-                    routerMikrotik={dataROw}
+                    client={dataRow}
                     closeModal={closeModal}
                 />
             )}
             {showModalEdit && (
-                <EditRouterMikrotik
+                <EditClient
                     showModal={showModalEdit}
-                    routerMikrotik={dataROw}
+                    client={dataRow}
                     closeModal={closeModal}
                 />
             )}
             {showModalDelete && (
-                <DeleteRouterMikrotik
+                <DeleteClient
                     showModal={showModalDelete}
-                    routerMikrotik={dataROw}
+                    client={dataRow}
                     closeModal={closeModal}
                 />
             )}

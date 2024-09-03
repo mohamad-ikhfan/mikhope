@@ -34,6 +34,12 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Router
                                 </NavLink>
+                                <NavLink
+                                    href={route("client.index")}
+                                    active={route().current("client.*")}
+                                >
+                                    Client
+                                </NavLink>
                             </div>
                         </div>
 

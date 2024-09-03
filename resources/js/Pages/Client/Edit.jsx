@@ -6,24 +6,20 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function EditRouterMikrotik({
-    showModal,
-    closeModal,
-    routerMikrotik,
-}) {
+export default function EditClient({ showModal, closeModal, client }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            name: routerMikrotik.name,
-            host: routerMikrotik.host,
-            port: routerMikrotik.port,
-            user: routerMikrotik.user,
-            pass: routerMikrotik.pass,
+            identity_number: client.identity_number,
+            full_name: client.full_name,
+            phone: client.phone,
+            email: client.email,
+            address: client.address,
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("router.update", routerMikrotik.id), {
+        put(route("client.update", client.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();
@@ -39,92 +35,95 @@ export default function EditRouterMikrotik({
                 <form onSubmit={submit}>
                     <div className="grid grid-cols-2 gap-6 pb-6">
                         <div className="col-span-full">
-                            <InputLabel htmlFor="name" value="Router Name" />
+                            <InputLabel
+                                htmlFor="identity_number"
+                                value="Identity Number"
+                            />
 
                             <TextInput
-                                id="name"
+                                id="identity_number"
                                 className="mt-1 block w-full"
-                                value={data.name}
+                                value={data.identity_number}
                                 onChange={(e) =>
-                                    setData("name", e.target.value)
+                                    setData("identity_number", e.target.value)
                                 }
                             />
 
                             <InputError
                                 className="mt-2"
-                                message={errors.name}
+                                message={errors.identity_number}
                             />
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="host" value="Host" />
+                            <InputLabel htmlFor="full_name" value="Full Name" />
 
                             <TextInput
-                                id="host"
+                                id="full_name"
                                 className="mt-1 block w-full"
-                                value={data.host}
+                                value={data.full_name}
                                 onChange={(e) =>
-                                    setData("host", e.target.value)
+                                    setData("full_name", e.target.value)
                                 }
                             />
 
                             <InputError
                                 className="mt-2"
-                                message={errors.host}
+                                message={errors.full_name}
                             />
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="port" value="Port" />
+                            <InputLabel htmlFor="phone" value="Phone Number" />
 
                             <TextInput
-                                id="port"
+                                id="phone"
                                 className="mt-1 block w-full"
-                                value={data.port}
+                                value={data.phone}
                                 onChange={(e) =>
-                                    setData("port", e.target.value)
+                                    setData("phone", e.target.value)
                                 }
                             />
 
                             <InputError
                                 className="mt-2"
-                                message={errors.port}
+                                message={errors.phone}
                             />
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="user" value="User" />
+                            <InputLabel htmlFor="email" value="Email" />
 
                             <TextInput
-                                id="user"
+                                id="email"
                                 className="mt-1 block w-full"
-                                value={data.user}
+                                value={data.email}
                                 onChange={(e) =>
-                                    setData("user", e.target.value)
+                                    setData("email", e.target.value)
                                 }
                             />
 
                             <InputError
                                 className="mt-2"
-                                message={errors.user}
+                                message={errors.email}
                             />
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="pass" value="Pass" />
+                            <InputLabel htmlFor="address" value="Address" />
 
                             <TextInput
-                                id="pass"
+                                id="address"
                                 className="mt-1 block w-full"
-                                value={data.pass}
+                                value={data.address}
                                 onChange={(e) =>
-                                    setData("pass", e.target.value)
+                                    setData("address", e.target.value)
                                 }
                             />
 
                             <InputError
                                 className="mt-2"
-                                message={errors.pass}
+                                message={errors.address}
                             />
                         </div>
                     </div>

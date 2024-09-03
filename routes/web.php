@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouterMikrotikController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,13 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [RouterMikrotikController::class, 'store'])->name('router.store');
         Route::put('update/{id}', [RouterMikrotikController::class, 'update'])->name('router.update');
         Route::delete('/{id}', [RouterMikrotikController::class, 'destroy'])->name('router.destroy');
+    });
+
+    Route::prefix('client')->group(function () {
+        Route::get('/', [ClientController::class, 'index'])->name('client.index');
+        Route::post('store', [ClientController::class, 'store'])->name('client.store');
+        Route::put('update/{id}', [ClientController::class, 'update'])->name('client.update');
+        Route::delete('/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
     });
 });
 
