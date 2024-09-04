@@ -35,16 +35,22 @@ export default function Authenticated({ user, header, children }) {
                                     Router
                                 </NavLink>
                                 <NavLink
+                                    href={route("packet.index")}
+                                    active={route().current("packet.*")}
+                                >
+                                    Packet
+                                </NavLink>
+                                <NavLink
                                     href={route("client.index")}
                                     active={route().current("client.*")}
                                 >
                                     Client
                                 </NavLink>
                                 <NavLink
-                                    href={route("packet.index")}
-                                    active={route().current("packet.*")}
+                                    href={route("subscribed.index")}
+                                    active={route().current("subscribed.*")}
                                 >
-                                    Packet
+                                    Subscribed
                                 </NavLink>
                             </div>
                         </div>

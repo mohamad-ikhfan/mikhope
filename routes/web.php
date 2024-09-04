@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PacketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouterMikrotikController;
+use App\Http\Controllers\SubscribedController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,6 +36,13 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [PacketController::class, 'store'])->name('packet.store');
         Route::put('update/{id}', [PacketController::class, 'update'])->name('packet.update');
         Route::delete('/{id}', [PacketController::class, 'destroy'])->name('packet.destroy');
+    });
+
+    Route::prefix('subscribed')->group(function () {
+        Route::get('/', [SubscribedController::class, 'index'])->name('subscribed.index');
+        Route::post('store', [SubscribedController::class, 'store'])->name('subscribed.store');
+        Route::put('update/{id}', [SubscribedController::class, 'update'])->name('subscribed.update');
+        Route::delete('/{id}', [SubscribedController::class, 'destroy'])->name('subscribed.destroy');
     });
 });
 
