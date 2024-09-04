@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RouterMikrotik extends Model
 {
-    use HasFactory;
+    use HasFactory, CreatedUpdatedBy;
 
     protected $guarded = [];
 
