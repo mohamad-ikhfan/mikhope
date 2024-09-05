@@ -49,4 +49,15 @@ class RouterMikrotikController extends Controller
         $routerMikrotik = RouterMikrotik::findOrFail($id);
         $routerMikrotik->delete();
     }
+
+    public function testConnection($id)
+    {
+        $routerMikrotik = RouterMikrotik::findOrFail($id);
+        try {
+            $routerMikrotik->connect();
+            return response()->json('Router connected succesfully.');
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 408);
+        }
+    }
 }

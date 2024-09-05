@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [RouterMikrotikController::class, 'store'])->name('router.store');
         Route::put('update/{id}', [RouterMikrotikController::class, 'update'])->name('router.update');
         Route::delete('/{id}', [RouterMikrotikController::class, 'destroy'])->name('router.destroy');
+        Route::patch('test-connection/{id}', [RouterMikrotikController::class, 'testConnection'])->name('router.test-connection');
     });
 
     Route::prefix('client')->group(function () {

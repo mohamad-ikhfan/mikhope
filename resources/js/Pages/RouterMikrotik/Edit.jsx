@@ -6,6 +6,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import { useForm } from "@inertiajs/react";
+import axios from "axios";
 import { useState } from "react";
 
 export default function EditRouterMikrotik({
@@ -42,6 +43,22 @@ export default function EditRouterMikrotik({
                 closeModal();
             },
         });
+    };
+
+    const [pingProcessing, setPingProcessing] = useState(false);
+    const [pingStatus, setPingStatus] = useState("");
+
+    const handlePingTest = async () => {
+        setPingProcessing(true);
+        await axios
+            .patch(route("router.test-connection", routerMikrotik.id))
+            .then((res) => {
+                setPingStatus(res.data);
+            })
+            .catch((err) => {
+                setPingStatus(err.response.data);
+            })
+            .finally(() => setPingProcessing(false));
     };
 
     return (
@@ -154,6 +171,17 @@ export default function EditRouterMikrotik({
                                 message={errors.pass}
                             />
                         </div>
+                    </div>
+
+                    <div className="w-full mb-6 text-center">
+                        <p className="dark:text-white mb-2">{pingStatus}</p>
+                        <PrimaryButton
+                            type="button"
+                            disabled={pingProcessing}
+                            onClick={handlePingTest}
+                        >
+                            ping test!
+                        </PrimaryButton>
                     </div>
 
                     <div className="flex items-center gap-4">
