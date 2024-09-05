@@ -2,7 +2,9 @@ import InputLabel from "@/Components/InputLabel";
 import Modal from "@/Components/Modal";
 import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import { useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function ShowRouterMikrotik({
     showModal,
@@ -16,6 +18,16 @@ export default function ShowRouterMikrotik({
         user: routerMikrotik.user,
         pass: routerMikrotik.pass,
     });
+
+    const [inputType, setInputType] = useState("password");
+
+    const handleChangeInputType = () => {
+        if (inputType === "text") {
+            setInputType("password");
+        } else {
+            setInputType("text");
+        }
+    };
 
     return (
         <Modal show={showModal} maxWidth="4xl">
@@ -70,12 +82,27 @@ export default function ShowRouterMikrotik({
                         <div>
                             <InputLabel htmlFor="pass" value="Pass" />
 
-                            <TextInput
-                                id="pass"
-                                className="mt-1 block w-full"
-                                value={data.pass}
-                                readOnly={true}
-                            />
+                            <div className="relative">
+                                <TextInput
+                                    id="pass"
+                                    className="mt-1 block w-full"
+                                    type={inputType}
+                                    value={data.pass}
+                                    readOnly={true}
+                                />
+                                {inputType === "password" && (
+                                    <EyeIcon
+                                        className="w-6 absolute top-2 right-3 text-gray-600 cursor-pointer"
+                                        onClick={handleChangeInputType}
+                                    />
+                                )}
+                                {inputType === "text" && (
+                                    <EyeSlashIcon
+                                        className="w-6 absolute top-2 right-3 text-gray-600 cursor-pointer"
+                                        onClick={handleChangeInputType}
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
 

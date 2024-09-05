@@ -1,5 +1,10 @@
 import SearchInput from "@/Components/SearchInput";
-import { EyeIcon, PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
+import {
+    EyeIcon,
+    EyeSlashIcon,
+    PencilIcon,
+    TrashIcon,
+} from "@heroicons/react/16/solid";
 import ShowRouterMikrotik from "./Show";
 import { useState } from "react";
 import EditRouterMikrotik from "./Edit";
@@ -14,6 +19,16 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [dataROw, setDataRow] = useState();
+
+    const [typeText, setTypeText] = useState("password");
+
+    const handleChangeTypeText = () => {
+        if (typeText === "text") {
+            setTypeText("password");
+        } else {
+            setTypeText("text");
+        }
+    };
 
     const closeModal = () => {
         setShowModalShow(false);
@@ -35,6 +50,7 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
                             <th className="p-4">#</th>
                             <th className="p-4">name</th>
                             <th className="p-4">host</th>
+                            <th className="p-4">port</th>
                             <th className="p-4">user</th>
                             <th className="p-4">pass</th>
                             <th className="p-4">action</th>
@@ -52,7 +68,37 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
                                     <td className="px-4 py-2">{row.host}</td>
                                     <td className="px-4 py-2">{row.port}</td>
                                     <td className="px-4 py-2">{row.user}</td>
-                                    <td className="px-4 py-2">{row.pass}</td>
+                                    <td className="px-4 py-2">
+                                        <div className="flex gap-1">
+                                            <div>
+                                                {typeText === "password" &&
+                                                    row.pass.replaceAll(
+                                                        row.pass,
+                                                        "******"
+                                                    )}
+                                                {typeText === "text" &&
+                                                    row.pass}
+                                            </div>
+                                            <div>
+                                                {typeText === "password" && (
+                                                    <EyeIcon
+                                                        className="w-4 text-gray-600 cursor-pointer"
+                                                        onClick={
+                                                            handleChangeTypeText
+                                                        }
+                                                    />
+                                                )}
+                                                {typeText === "text" && (
+                                                    <EyeSlashIcon
+                                                        className="w-4 text-gray-600 cursor-pointer"
+                                                        onClick={
+                                                            handleChangeTypeText
+                                                        }
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-2">
                                             <EyeIcon
