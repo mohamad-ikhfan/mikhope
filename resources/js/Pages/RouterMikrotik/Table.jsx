@@ -7,7 +7,6 @@ import DeleteRouterMikrotik from "./Delete";
 import Pagination from "@/Components/Pagination";
 
 export default function RouterMikrotikTable({ routerMikrotiks }) {
-    const columns = ["name", "host", "port", "user", "pass"];
     const rows = routerMikrotiks.data;
     const links = routerMikrotiks.meta.links;
 
@@ -34,27 +33,26 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
                     <thead className="dark:bg-gray-600 font-bold uppercase border">
                         <tr>
                             <th className="p-4">#</th>
-                            {columns.map((column, index) => (
-                                <th key={index} className="p-4">
-                                    {column.replace("_", " ")}
-                                </th>
-                            ))}
+                            <th className="p-4">name</th>
+                            <th className="p-4">host</th>
+                            <th className="p-4">user</th>
+                            <th className="p-4">pass</th>
                             <th className="p-4">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length > 0 ? (
-                            rows.map((row, num) => (
+                            rows.map((row, index) => (
                                 <tr
                                     key={row.id}
                                     className="dark:bg-gray-900 dark:hover:bg-gray-800"
                                 >
-                                    <td className="px-4 py-2">{++num}</td>
-                                    {columns.map((column, index) => (
-                                        <td key={index} className="px-4 py-2">
-                                            {row[column]}
-                                        </td>
-                                    ))}
+                                    <td className="px-4 py-2">{++index}</td>
+                                    <td className="px-4 py-2">{row.name}</td>
+                                    <td className="px-4 py-2">{row.host}</td>
+                                    <td className="px-4 py-2">{row.port}</td>
+                                    <td className="px-4 py-2">{row.user}</td>
+                                    <td className="px-4 py-2">{row.pass}</td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-2">
                                             <EyeIcon
@@ -87,10 +85,7 @@ export default function RouterMikrotikTable({ routerMikrotiks }) {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={columns.length + 2}
-                                    className="p-4 text-center"
-                                >
+                                <td colSpan={6} className="p-4 text-center">
                                     No data found.
                                 </td>
                             </tr>

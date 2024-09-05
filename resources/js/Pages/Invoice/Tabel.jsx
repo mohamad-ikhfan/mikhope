@@ -13,18 +13,6 @@ import ShowInvoice from "./Show";
 import PaymentAcceptedInvoice from "./PaymentAccepted";
 
 export default function InvoiceTable({ invoices, subscribeds }) {
-    const columns = [
-        "inv_number",
-        "subscribed_id",
-        "date_of_use",
-        "day_of_use",
-        "total_day_of_use",
-        "date_of_bill",
-        "discount_bill",
-        "total_bill",
-        "payemented_at",
-        "payment_accepted_at",
-    ];
     const rows = invoices.data;
     const links = invoices.meta.links;
 
@@ -58,30 +46,53 @@ export default function InvoiceTable({ invoices, subscribeds }) {
                     <thead className="dark:bg-gray-600 font-bold uppercase border text-nowrap">
                         <tr>
                             <th className="p-4">#</th>
-                            {columns.map((column, index) => (
-                                <th key={index} className="p-4">
-                                    {column}
-                                </th>
-                            ))}
+                            <th className="p-4">inv number</th>
+                            <th className="p-4">subscribed</th>
+                            <th className="p-4">date of use</th>
+                            <th className="p-4">day of use</th>
+                            <th className="p-4">date of bill</th>
+                            <th className="p-4">discount bill</th>
+                            <th className="p-4">total bill</th>
+                            <th className="p-4">payemented at</th>
+                            <th className="p-4">payment accepted at</th>
                             <th className="p-4">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length > 0 ? (
-                            rows.map((row, num) => (
+                            rows.map((row, index) => (
                                 <tr
                                     key={row.id}
                                     className="dark:bg-gray-900 dark:hover:bg-gray-800"
                                 >
-                                    <td className="px-4 py-2">{++num}</td>
-                                    {columns.map((column, index) => (
-                                        <td key={index} className="px-4 py-2">
-                                            {column === "discount_bill" ||
-                                            column === "total_bill"
-                                                ? formatNumber(row[column])
-                                                : row[column]}
-                                        </td>
-                                    ))}
+                                    <td className="px-4 py-2">{++index}</td>
+                                    <td className="px-4 py-2">
+                                        {row.inv_number}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.subscribed_name}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.date_of_use}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.day_of_use}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.date_of_bill}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {formatNumber(row.discount_bill)}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {formatNumber(row.total_bill)}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.payemented_at}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.payment_accepted_at}
+                                    </td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-2">
                                             <BanknotesIcon
@@ -124,10 +135,7 @@ export default function InvoiceTable({ invoices, subscribeds }) {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={columns.length + 2}
-                                    className="p-4 text-center"
-                                >
+                                <td colSpan={12} className="p-4 text-center">
                                     No data found.
                                 </td>
                             </tr>

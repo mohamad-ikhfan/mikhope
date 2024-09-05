@@ -7,7 +7,6 @@ import DeleteSubscribed from "./Delete";
 import ShowSubscribed from "./Show";
 
 export default function SubscribedTable({ subscribeds, clients, packets }) {
-    const columns = ["client_id", "packet_id", "client_secret", "description"];
     const rows = subscribeds.data;
     const links = subscribeds.meta.links;
 
@@ -34,27 +33,33 @@ export default function SubscribedTable({ subscribeds, clients, packets }) {
                     <thead className="dark:bg-gray-600 font-bold uppercase border">
                         <tr>
                             <th className="p-4">#</th>
-                            {columns.map((column, index) => (
-                                <th key={index} className="p-4">
-                                    {column.replace("_", " ")}
-                                </th>
-                            ))}
+                            <th className="p-4">client</th>
+                            <th className="p-4">packet</th>
+                            <th className="p-4">client secret</th>
+                            <th className="p-4">description</th>
                             <th className="p-4">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length > 0 ? (
-                            rows.map((row, num) => (
+                            rows.map((row, index) => (
                                 <tr
                                     key={row.id}
                                     className="dark:bg-gray-900 dark:hover:bg-gray-800"
                                 >
-                                    <td className="px-4 py-2">{++num}</td>
-                                    {columns.map((column, index) => (
-                                        <td key={index} className="px-4 py-2">
-                                            {row[column]}
-                                        </td>
-                                    ))}
+                                    <td className="px-4 py-2">{++index}</td>
+                                    <td className="px-4 py-2">
+                                        {row.client_name}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.packet_name}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.client_secret}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.description}
+                                    </td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-2">
                                             <EyeIcon
@@ -87,10 +92,7 @@ export default function SubscribedTable({ subscribeds, clients, packets }) {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={columns.length + 2}
-                                    className="p-4 text-center"
-                                >
+                                <td colSpan={6} className="p-4 text-center">
                                     No data found.
                                 </td>
                             </tr>

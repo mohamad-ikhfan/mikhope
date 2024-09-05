@@ -7,7 +7,6 @@ import EditPacket from "./Edit";
 import DeletePacket from "./Delete";
 
 export default function PacketTable({ packets }) {
-    const columns = ["name", "price", "desciption"];
     const rows = packets.data;
     const links = packets.meta.links;
 
@@ -35,34 +34,32 @@ export default function PacketTable({ packets }) {
             </div>
             <div className="w-full overflow-auto py-6">
                 <table className="w-full text-left border dark:text-gray-200 ">
-                    <thead className="dark:bg-gray-600 font-bold uppercase border">
+                    <thead className="dark:bg-gray-600 font-bold uppercase border text-nowrap">
                         <tr>
                             <th className="p-4">#</th>
-                            {columns.map((column, index) => (
-                                <th key={index} className="p-4">
-                                    {column.replace("_", " ")}
-                                </th>
-                            ))}
+                            <th className="p-4">name</th>
+                            <th className="p-4">price</th>
+                            <th className="p-4">description</th>
                             <th className="p-4">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length > 0 ? (
-                            rows.map((row, num) => (
+                            rows.map((row, index) => (
                                 <tr
                                     key={row.id}
                                     className="dark:bg-gray-900 dark:hover:bg-gray-800"
                                 >
-                                    <td className="px-4 py-2">{++num}</td>
-                                    {columns.map((column, index) => (
-                                        <td key={index} className="px-4 py-2">
-                                            {column === "price"
-                                                ? formatNumber(row[column])
-                                                : row[column]}
-                                        </td>
-                                    ))}
+                                    <td className="px-4 py-2">{++index}</td>
+                                    <td className="px-4 py-2">{row.name}</td>
                                     <td className="px-4 py-2">
-                                        <div className="flex gap-2">
+                                        {formatNumber(row.price)}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.descriprion}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <div className="flex gap-2 justify-start">
                                             <EyeIcon
                                                 className="w-5 cursor-pointer text-blue-400"
                                                 title="Show"
@@ -93,10 +90,7 @@ export default function PacketTable({ packets }) {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={columns.length + 2}
-                                    className="p-4 text-center"
-                                >
+                                <td colSpan={5} className="p-4 text-center">
                                     No data found.
                                 </td>
                             </tr>

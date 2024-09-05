@@ -7,13 +7,6 @@ import DeleteClient from "./Delete";
 import ShowClient from "./Show";
 
 export default function ClientTable({ clients }) {
-    const columns = [
-        "identity_number",
-        "full_name",
-        "phone",
-        "email",
-        "address",
-    ];
     const rows = clients.data;
     const links = clients.meta.links;
 
@@ -37,30 +30,34 @@ export default function ClientTable({ clients }) {
             </div>
             <div className="w-full overflow-auto py-6">
                 <table className="w-full text-left border dark:text-gray-200 ">
-                    <thead className="dark:bg-gray-600 font-bold uppercase border">
+                    <thead className="dark:bg-gray-600 font-bold uppercase border text-nowrap">
                         <tr>
                             <th className="p-4">#</th>
-                            {columns.map((column, index) => (
-                                <th key={index} className="p-4">
-                                    {column.replace("_", " ")}
-                                </th>
-                            ))}
+                            <th className="p-4">identity number</th>
+                            <th className="p-4">full name</th>
+                            <th className="p-4">phone</th>
+                            <th className="p-4">email</th>
+                            <th className="p-4">address</th>
                             <th className="p-4">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length > 0 ? (
-                            rows.map((row, num) => (
+                            rows.map((row, index) => (
                                 <tr
                                     key={row.id}
                                     className="dark:bg-gray-900 dark:hover:bg-gray-800"
                                 >
-                                    <td className="px-4 py-2">{++num}</td>
-                                    {columns.map((column, index) => (
-                                        <td key={index} className="px-4 py-2">
-                                            {row[column]}
-                                        </td>
-                                    ))}
+                                    <td className="px-4 py-2">{++index}</td>
+                                    <td className="px-4 py-2">
+                                        {row.identity_number}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {row.full_name}
+                                    </td>
+                                    <td className="px-4 py-2">{row.phone}</td>
+                                    <td className="px-4 py-2">{row.email}</td>
+                                    <td className="px-4 py-2">{row.address}</td>
                                     <td className="px-4 py-2">
                                         <div className="flex gap-2">
                                             <EyeIcon
@@ -93,10 +90,7 @@ export default function ClientTable({ clients }) {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={columns.length + 2}
-                                    className="p-4 text-center"
-                                >
+                                <td colSpan={7} className="p-4 text-center">
                                     No data found.
                                 </td>
                             </tr>
