@@ -52,6 +52,12 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     Subscribed
                                 </NavLink>
+                                <NavLink
+                                    href={route("invoice.index")}
+                                    active={route().current("invoice.*")}
+                                >
+                                    Invoice
+                                </NavLink>
                             </div>
                         </div>
 

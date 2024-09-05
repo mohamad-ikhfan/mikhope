@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PacketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouterMikrotikController;
@@ -43,6 +44,13 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [SubscribedController::class, 'store'])->name('subscribed.store');
         Route::put('update/{id}', [SubscribedController::class, 'update'])->name('subscribed.update');
         Route::delete('/{id}', [SubscribedController::class, 'destroy'])->name('subscribed.destroy');
+    });
+
+    Route::prefix('invoice')->group(function () {
+        Route::get('/', [InvoiceController::class, 'index'])->name('invoice.index');
+        Route::post('store', [InvoiceController::class, 'store'])->name('invoice.store');
+        Route::put('update/{id}', [InvoiceController::class, 'update'])->name('invoice.update');
+        Route::delete('/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
     });
 });
 
