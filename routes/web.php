@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::post('store', [InvoiceController::class, 'store'])->name('invoice.store');
         Route::put('update/{id}', [InvoiceController::class, 'update'])->name('invoice.update');
         Route::delete('/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
+        Route::patch('payment-accepted/{id}', [InvoiceController::class, 'paymentAccepted'])->name('invoice.payment-accepted');
     });
 });
 

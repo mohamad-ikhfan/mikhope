@@ -61,6 +61,8 @@ class InvoiceController extends Controller
             $totalBill = round(($subscribed->packet->price / $requestLastDateOfUse->day) * ($dayOfUse + 1));
         }
 
+        $discountBill = $subscribed->packet->price - $totalBill;
+
         Invoice::create([
             'inv_number' => $inv_number,
             'subscribed_id' => $request->subscribed_id,
@@ -68,6 +70,7 @@ class InvoiceController extends Controller
             'day_of_use' => $dayOfUse,
             'total_day_of_use' => $requestLastDateOfUse->day,
             'date_of_bill' => $dateOfBill->format('Y-m-d'),
+            'discount_bill' => $discountBill,
             'total_bill' => $totalBill,
         ]);
     }
@@ -100,12 +103,15 @@ class InvoiceController extends Controller
             $totalBill = round(($subscribed->packet->price / $requestLastDateOfUse->day) * ($dayOfUse + 1));
         }
 
+        $discountBill = $subscribed->packet->price - $totalBill;
+
         $invoice->update([
             'subscribed_id' => $request->subscribed_id,
             'date_of_use' => $requestDateOfUse->format('Y-m-d'),
             'day_of_use' => $dayOfUse,
             'total_day_of_use' => $requestLastDateOfUse->day,
             'date_of_bill' => $dateOfBill->format('Y-m-d'),
+            'discount_bill' => $discountBill,
             'total_bill' => $totalBill,
         ]);
     }
@@ -117,5 +123,15 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::findOrFail($id);
         $invoice->delete();
+    }
+
+    public function paymentAccepted($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $invoice->update([
+            'payemented_at' => now(),
+            'payment_accepted_at' => now(),
+            'payment_accepted_by' => auth('web')->user()->id
+        ]);
     }
 }

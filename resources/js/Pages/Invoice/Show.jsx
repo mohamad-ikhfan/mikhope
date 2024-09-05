@@ -116,6 +116,20 @@ export default function ShowInvoice({ showModal, closeModal, invoice }) {
 
                         <div>
                             <InputLabel
+                                htmlFor="discount_bill"
+                                value="Discount bill"
+                            />
+
+                            <TextInput
+                                id="discount_bill"
+                                className="mt-1 block w-full"
+                                defaultValue={data.discount_bill}
+                                readOnly={true}
+                            />
+                        </div>
+
+                        <div>
+                            <InputLabel
                                 htmlFor="total_bill"
                                 value="Total bill"
                             />

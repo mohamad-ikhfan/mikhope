@@ -22,6 +22,7 @@ class InvoiceResource extends JsonResource
             'day_of_use' => $this->day_of_use,
             'total_day_of_use' => $this->total_day_of_use,
             'date_of_bill' => $this->date_of_bill,
+            'discount_bill' => $this->discount_bill,
             'total_bill' => $this->total_bill,
             'payemented_at' => $this->payemented_at,
             'payemented_by' => $this->payemented_by,

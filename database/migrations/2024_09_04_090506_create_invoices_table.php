@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('day_of_use');
             $table->integer('total_day_of_use');
             $table->date('date_of_bill');
+            $table->float('discount_bill');
             $table->float('total_bill');
             $table->dateTime('payemented_at')->nullable();
             $table->unsignedBigInteger('payemented_by')->nullable();
