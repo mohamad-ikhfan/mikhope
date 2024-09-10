@@ -6,6 +6,7 @@ use App\Http\Controllers\PacketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouterMikrotikController;
 use App\Http\Controllers\SubscribedController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -53,6 +54,13 @@ Route::middleware('auth')->group(function () {
         Route::put('update/{id}', [InvoiceController::class, 'update'])->name('invoice.update');
         Route::delete('/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
         Route::patch('payment-accepted/{id}', [InvoiceController::class, 'paymentAccepted'])->name('invoice.payment-accepted');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('user.index');
+        Route::post('store', [UserController::class, 'store'])->name('user.store');
+        Route::put('update/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     });
 });
 
