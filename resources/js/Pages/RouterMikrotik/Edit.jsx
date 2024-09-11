@@ -9,18 +9,14 @@ import { useForm } from "@inertiajs/react";
 import axios from "axios";
 import { useState } from "react";
 
-export default function EditRouterMikrotik({
-    showModal,
-    closeModal,
-    routerMikrotik,
-}) {
+export default function EditRouterMikrotik({ showModal, closeModal, state }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            name: routerMikrotik.name,
-            host: routerMikrotik.host,
-            port: routerMikrotik.port,
-            user: routerMikrotik.user,
-            pass: routerMikrotik.pass,
+            name: state.name,
+            host: state.host,
+            port: state.port,
+            user: state.user,
+            pass: state.pass,
         });
 
     const [inputType, setInputType] = useState("password");
@@ -36,7 +32,7 @@ export default function EditRouterMikrotik({
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("router.update", routerMikrotik.id), {
+        put(route("router.update", state.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();
@@ -51,7 +47,7 @@ export default function EditRouterMikrotik({
     const handlePingTest = async () => {
         setPingProcessing(true);
         await axios
-            .patch(route("router.test-connection", routerMikrotik.id))
+            .patch(route("router.test-connection", state.id))
             .then((res) => {
                 setPingStatus(res.data);
             })

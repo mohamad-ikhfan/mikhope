@@ -15,11 +15,8 @@ class RouterMikrotikController extends Controller
      */
     public function index()
     {
-        $query = RouterMikrotik::query();
-
-        /** @disregard P1013 */
         return Inertia::render('RouterMikrotik/Index', [
-            'routerMikrotiks' => RouterMikrotikResource::collection($query->paginate(10)->onEachSide(1))
+            'routerMikrotiks' => RouterMikrotikResource::collection(RouterMikrotik::latest()->get())
         ]);
     }
 
