@@ -7,19 +7,19 @@ import SelectInput from "@/Components/SelectInput";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function ShowInvoice({ showModal, closeModal, invoice }) {
+export default function ShowInvoice({ showModal, closeModal, state }) {
     const { data } = useForm({
-        inv_number: invoice.inv_number,
-        subscribed_id: invoice.subscribed_id,
-        date_of_use: invoice.date_of_use,
-        day_of_use: invoice.day_of_use,
-        total_day_of_use: invoice.total_day_of_use,
-        date_of_bill: invoice.date_of_bill,
-        total_bill: invoice.total_bill,
-        payemented_at: invoice.payemented_at,
-        payemented_by: invoice.payemented_by,
-        payment_accepted_at: invoice.payment_accepted_at,
-        payment_accepted_by: invoice.payment_accepted_by,
+        inv_number: state.inv_number,
+        subscribed_id: state.subscribed_id,
+        date_of_use: state.date_of_use,
+        day_of_use: state.day_of_use,
+        total_day_of_use: state.total_day_of_use,
+        date_of_bill: state.date_of_bill,
+        total_bill: state.total_bill,
+        payemented_at: state.payemented_at,
+        payemented_by: state.payemented_by,
+        payment_accepted_at: state.payment_accepted_at,
+        payment_accepted_by: state.payment_accepted_by,
     });
 
     return (

@@ -8,15 +8,15 @@ import { useForm } from "@inertiajs/react";
 export default function ShowSubscribed({
     showModal,
     closeModal,
-    subscribed,
+    state,
     clients,
     packets,
 }) {
     const { data } = useForm({
-        client_id: subscribed.client_id,
-        packet_id: subscribed.packet_id,
-        client_secret: subscribed.client_secret,
-        description: subscribed.description,
+        client_id: state.client_id,
+        packet_id: state.packet_id,
+        client_secret: state.client_secret,
+        description: state.description,
     });
 
     return (

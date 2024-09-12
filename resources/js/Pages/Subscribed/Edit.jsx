@@ -10,22 +10,22 @@ import { useForm } from "@inertiajs/react";
 export default function EditSubscribed({
     showModal,
     closeModal,
-    subscribed,
+    state,
     clients,
     packets,
 }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            client_id: subscribed.client_id,
-            packet_id: subscribed.packet_id,
-            client_secret: subscribed.client_secret,
-            description: subscribed.description,
+            client_id: state.client_id,
+            packet_id: state.packet_id,
+            client_secret: state.client_secret,
+            description: state.description,
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("subscribed.update", subscribed.id), {
+        put(route("subscribed.update", state.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();

@@ -10,19 +10,19 @@ import { useForm } from "@inertiajs/react";
 export default function EditInvoice({
     showModal,
     closeModal,
-    invoice,
+    state,
     subscribeds,
 }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            subscribed_id: invoice.subscribed_id,
-            date_of_use: invoice.date_of_use,
+            subscribed_id: state.subscribed_id,
+            date_of_use: state.date_of_use,
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("invoice.update", invoice.id), {
+        put(route("invoice.update", state.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();

@@ -6,20 +6,20 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function EditClient({ showModal, closeModal, client }) {
+export default function EditClient({ showModal, closeModal, state }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            identity_number: client.identity_number,
-            full_name: client.full_name,
-            phone: client.phone,
-            email: client.email,
-            address: client.address,
+            identity_number: state.identity_number,
+            full_name: state.full_name,
+            phone: state.phone,
+            email: state.email,
+            address: state.address,
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("client.update", client.id), {
+        put(route("client.update", state.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();

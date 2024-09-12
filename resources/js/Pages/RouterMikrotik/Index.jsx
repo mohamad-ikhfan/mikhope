@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import CreateRouterMikrotik from "./Create";
 import { useMemo, useState } from "react";
-import { Table } from "@/Components/Table";
+import Table from "@/Components/Table";
 import {
     createColumnHelper,
     getCoreRowModel,
@@ -12,7 +12,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { TableAction } from "@/Components/TableAction";
+import TableAction from "@/Components/TableAction";
 import ShowRouterMikrotik from "./Show";
 import EditRouterMikrotik from "./Edit";
 import DeleteRouterMikrotik from "./Delete";
@@ -58,7 +58,7 @@ export default function RouterMikrotikIndex({ auth, routerMikrotiks }) {
         setDataRow();
     };
 
-    const data = useMemo(() => routerMikrotiks.data, []);
+    const data = useMemo(() => routerMikrotiks.data, [routerMikrotiks.data]);
 
     const columnHelper = createColumnHelper();
 
@@ -113,6 +113,7 @@ export default function RouterMikrotikIndex({ auth, routerMikrotiks }) {
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        autoResetPageIndex: false,
     });
 
     return (

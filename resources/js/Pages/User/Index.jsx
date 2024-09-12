@@ -11,8 +11,8 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { Table } from "@/Components/Table";
-import { TableAction } from "@/Components/TableAction";
+import Table from "@/Components/Table";
+import TableAction from "@/Components/TableAction";
 import ShowUser from "./Show";
 import EditUser from "./Edit";
 import DeleteUser from "./Delete";
@@ -47,7 +47,7 @@ export default function ClientIndex({ auth, users }) {
         setDataRow();
     };
 
-    const data = useMemo(() => users.data, []);
+    const data = useMemo(() => users.data, [users.data]);
 
     const columnHelper = createColumnHelper();
 
@@ -92,6 +92,7 @@ export default function ClientIndex({ auth, users }) {
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        autoResetPageIndex: false,
     });
 
     return (

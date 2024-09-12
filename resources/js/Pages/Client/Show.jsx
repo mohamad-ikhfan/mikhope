@@ -4,13 +4,13 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function ShowClient({ showModal, closeModal, client }) {
+export default function ShowClient({ showModal, closeModal, state }) {
     const { data } = useForm({
-        identity_number: client.identity_number,
-        full_name: client.full_name,
-        phone: client.phone,
-        email: client.email,
-        address: client.address,
+        identity_number: state.identity_number,
+        full_name: state.full_name,
+        phone: state.phone,
+        email: state.email,
+        address: state.address,
     });
 
     return (

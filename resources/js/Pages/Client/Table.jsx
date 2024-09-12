@@ -24,10 +24,6 @@ export default function ClientTable({ clients }) {
 
     return (
         <div className="p-4 md:p-6 text-gray-900 dark:text-gray-100">
-            <div className="flex justify-between">
-                <div></div>
-                <SearchInput />
-            </div>
             <div className="w-full overflow-auto py-6">
                 <table className="w-full text-left border dark:text-gray-200 ">
                     <thead className="dark:bg-gray-600 font-bold uppercase border text-nowrap">

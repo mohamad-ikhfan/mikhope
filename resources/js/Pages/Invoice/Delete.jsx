@@ -4,13 +4,13 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function DeleteInvoice({ showModal, closeModal, invoice }) {
+export default function DeleteInvoice({ showModal, closeModal, state }) {
     const [processing, setProcessing] = useState(false);
 
     const submit = (e) => {
         setProcessing(true);
         e.preventDefault();
-        router.delete(route("invoice.destroy", invoice.id), {
+        router.delete(route("invoice.destroy", state.id), {
             onSuccess: () => {
                 setProcessing(false);
                 closeModal();
@@ -22,7 +22,7 @@ export default function DeleteInvoice({ showModal, closeModal, invoice }) {
             <div className="w-full bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h3 className="dark:text-gray-100 text-lg text-center mb-6">
                     {"Are you sure to delete this invoice "} <br />
-                    <strong>{"(" + invoice.inv_number + ")"}</strong>
+                    <strong>{"(" + state.inv_number + ")"}</strong>
                     {"?"}
                 </h3>
                 <form onSubmit={submit} className="space-y-6">

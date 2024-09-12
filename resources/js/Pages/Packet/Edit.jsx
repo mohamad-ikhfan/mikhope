@@ -6,18 +6,18 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function EditPacket({ showModal, closeModal, packet }) {
+export default function EditPacket({ showModal, closeModal, state }) {
     const { data, setData, put, errors, processing, reset, clearErrors } =
         useForm({
-            name: packet.name,
-            price: packet.price,
-            desciption: packet.desciption,
+            name: state.name,
+            price: state.price,
+            desciption: state.desciption,
         });
 
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("packet.update", packet.id), {
+        put(route("packet.update", state.id), {
             onSuccess: () => {
                 reset();
                 clearErrors();

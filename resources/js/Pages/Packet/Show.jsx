@@ -4,11 +4,11 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 
-export default function ShowPacket({ showModal, closeModal, packet }) {
+export default function ShowPacket({ showModal, closeModal, state }) {
     const { data } = useForm({
-        name: packet.name,
-        price: packet.price,
-        desciption: packet.desciption,
+        name: state.name,
+        price: state.price,
+        desciption: state.desciption,
     });
 
     return (

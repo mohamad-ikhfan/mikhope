@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/16/solid";
 import TextInput from "./TextInput";
 
-export function Table({ table }) {
+export default function Table({ table }) {
     if (table) {
         return (
             <div className="w-full overflow-auto py-6">
@@ -107,7 +107,7 @@ export function Table({ table }) {
                                     colSpan={table.getAllColumns().length}
                                     className="text-center p-4"
                                 >
-                                    Not data found.
+                                    No data found.
                                 </td>
                             </tr>
                         )}
@@ -245,3 +245,6 @@ export function Table({ table }) {
         return null;
     }
 }
+
+export const numberFormat = (value) =>
+    new Intl.NumberFormat("en-IN").format(value);
