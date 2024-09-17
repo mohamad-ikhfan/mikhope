@@ -57,4 +57,9 @@ class RouterMikrotikController extends Controller
             return response()->json($e->getMessage(), 408);
         }
     }
+
+    public function fetch()
+    {
+        return response()->json(RouterMikrotikResource::collection(RouterMikrotik::all()));
+    }
 }

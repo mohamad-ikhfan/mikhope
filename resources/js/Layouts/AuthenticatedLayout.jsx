@@ -4,6 +4,7 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
+import SwitchRouter from "@/Components/SwitchRouter";
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -68,6 +69,9 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
+                            <div className="ms-2 relative">
+                                <SwitchRouter />
+                            </div>
                             <div className="ms-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -79,7 +83,7 @@ export default function Authenticated({ user, header, children }) {
                                                 {user.name}
 
                                                 <svg
-                                                    className="ms-2 -me-0.5 h-4 w-4"
+                                                    className="ms-1 -me-0.5 h-4 w-4"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
@@ -168,9 +172,48 @@ export default function Authenticated({ user, header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("user.index")}
+                            active={route().current("user.*")}
+                        >
+                            User
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("router.index")}
+                            active={route().current("router.*")}
+                        >
+                            Router
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("packet.index")}
+                            active={route().current("packet.*")}
+                        >
+                            Packet
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("client.index")}
+                            active={route().current("client.*")}
+                        >
+                            Client
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("subscribed.index")}
+                            active={route().current("subscribed.*")}
+                        >
+                            Subscribed
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("invoice.index")}
+                            active={route().current("invoice.*")}
+                        >
+                            Invoice
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+                        <div className="px-4 pb-2">
+                            <SwitchRouter align={"left"} />
+                        </div>
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800 dark:text-gray-200">
                                 {user.name}

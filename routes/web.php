@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
         Route::put('update/{id}', [RouterMikrotikController::class, 'update'])->name('router.update');
         Route::delete('/{id}', [RouterMikrotikController::class, 'destroy'])->name('router.destroy');
         Route::patch('test-connection/{id}', [RouterMikrotikController::class, 'testConnection'])->name('router.test-connection');
+
+        Route::get('/fetch', [RouterMikrotikController::class, 'fetch'])->name('router.fetch');
     });
 
     Route::prefix('client')->group(function () {
